@@ -1,0 +1,6 @@
+Do:
+g++ -Iinclude src/*.cpp main.cpp -o streaming_service
+
+then: 
+./streaming_service
+
