@@ -5,22 +5,22 @@
 
 using namespace std;
 
-UserInterface::UserInterface(MovieDatabase& db) : database(db) {}
+UserInterface::UserInterface(MovieDatabase& db) : database(db){}
 
-void UserInterface::run() {
+void UserInterface::run(){
     cout << "*********************************\n";
     cout << "*        WELCOME TO THE         *\n";
-    cout << "*         STREAMING APP         *\n";
+    cout << "*          NETFLIX++            *\n";
     cout << "*********************************\n\n";
 
     bool running = true;
-    while (running) {
+    while (running){
         showMainMenu();
         int choice;
         cin >> choice;
 
-        switch (choice) {
-            case 1: {
+        switch (choice){
+            case 1:{
                 cout << "Enter search keyword: ";
                 string keyword;
                 cin.ignore();
@@ -29,7 +29,7 @@ void UserInterface::run() {
                 showSearchResults(results);
                 break;
             }
-            case 2: {
+            case 2:{
                 cout << "Enter tag: ";
                 string tag;
                 cin.ignore();
@@ -38,16 +38,16 @@ void UserInterface::run() {
                 showSearchResults(results);
                 break;
             }
-            case 3: {
+            case 3:{
                 auto watch_later = database.getMoviesForWatchLater();
                 showSearchResults(watch_later);
                 break;
             }
-            case 4: {
+            case 4:{
                 running = false;
                 break;
             }
-            default: {
+            default:{
                 cout << "Invalid choice. Please try again.\n";
                 break;
             }
@@ -55,7 +55,7 @@ void UserInterface::run() {
     }
 }
 
-void UserInterface::showMainMenu() {
+void UserInterface::showMainMenu(){
     cout << "\n--- Main Menu ---\n";
     cout << "1. Search by title\n";
     cout << "2. Search by tag\n";
@@ -64,8 +64,8 @@ void UserInterface::showMainMenu() {
     cout << "Enter choice: ";
 }
 
-void UserInterface::showSearchResults(const vector<Movie>& results) {
-    if (results.empty()) {
+void UserInterface::showSearchResults(const vector<Movie>& results){
+    if (results.empty()){
         cout << "No results found.\n";
         return;
     }
@@ -80,7 +80,7 @@ void UserInterface::showSearchResults(const vector<Movie>& results) {
             if (results[i].isWatchLater()) cout << " (Watch Later)";
             cout << "\n";
         }
-        if (end < results.size()) {
+        if (end < results.size()){
             cout << "n. Next 5 results\n";
         }
         cout << "b. Back to main menu\n";
@@ -88,15 +88,15 @@ void UserInterface::showSearchResults(const vector<Movie>& results) {
         string choice;
         cin >> choice;
 
-        if (choice == "b") {
+        if (choice == "b"){
             showingResults = false;
-        } else if (choice == "n" && end < results.size()) {
+        } else if (choice == "n" && end < results.size()){
             start += 5;
-        } else if (isdigit(choice[0])) {
+        } else if (isdigit(choice[0])){
             int index = stoi(choice) - 1;
-            if (index >= 0 && index < results.size()) {
+            if (index >= 0 && index < results.size()){
                 showMovieDetails(const_cast<Movie&>(results[index]));
-            } else {
+            } else{
                 cout << "Invalid choice. Please try again.\n";
             }
         } else {
