@@ -36,6 +36,7 @@
 ### Descripción
 
 Netflix++ es una aplicación desarrollada por estudiantes de la Universidad de Ingeniería y Tecnología como proyecto para el curso de Programación 3.
+Enlace al drive donde se encuentra la grabación de la explicación del proyecto: https://drive.google.com/drive/folders/1q0y16lPzuWMErn4OKdYNFrCj4nzN04vk?usp=drive_link
 
 ### Objetivo
 
