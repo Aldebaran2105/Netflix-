@@ -12,7 +12,7 @@ public:
     void run();
     void showMainMenu();
     void showSearchResults(const vector<Movie>& results);
-    void showMovieDetails(Movie& movie); // Cambié el parámetro a referencia no-const
+    void showMovieDetails(Movie& movie);
 
 private:
     MovieDatabase& database;

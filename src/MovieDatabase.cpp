@@ -1,5 +1,5 @@
 #include "../include/MovieDatabase.h"
-#include "Utils.h"
+#include "../include/Utils.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -11,7 +11,9 @@ void MovieDatabase::loadFromCSV(const string& filename) {
     if (!file.is_open()) {
         throw runtime_error("No se pudo abrir el archivo: " + filename);
     }
+    
     string line;
+    getline(file, line);
     
     while (getline(file, line)) {
         vector<string> tokens = Utils::split(line, ',');
@@ -47,8 +49,9 @@ vector<Movie> MovieDatabase::searchByTitle(const string& keyword) const {
 }
 
 vector<Movie> MovieDatabase::searchByTag(const string& tag) const {
-    if (tag_index.find(tag) != tag_index.end()) {
-        return tag_index.at(tag);
+    auto it = tag_index.find(tag);
+    if (it != tag_index.end()) {
+        return it->second;
     }
     return {};
 }
@@ -73,11 +76,10 @@ vector<Movie> MovieDatabase::getSimilarMovies(const vector<Movie>& liked_movies)
     vector<Movie> result;
     for (const auto& movie : movies) {
         const auto& tags = movie.getTags();
-        for (const auto& tag : tags) {
-            if (liked_tags.find(tag) != liked_tags.end()) {
-                result.push_back(movie);
-                break;
-            }
+        if (any_of(tags.begin(), tags.end(), [&liked_tags](const string& tag) {
+                return liked_tags.find(tag) != liked_tags.end();
+            })) {
+            result.push_back(movie);
         }
     }
     return result;

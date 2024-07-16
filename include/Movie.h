@@ -29,8 +29,8 @@ private:
     vector<string> tags;
     string split;
     string synopsis_source;
-    bool liked;
-    bool watch_later;
+    bool liked = false; 
+    bool watch_later = false;
 };
 
 #endif // MOVIE_H
