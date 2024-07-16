@@ -4,12 +4,10 @@
 
 using namespace std;
 
-int main() {
-    MovieDatabase db;
+int main(){
+    MovieDatabase& db = MovieDatabase::getInstance();
     db.loadFromCSV("mpst_full_data.csv");
 
     UserInterface ui(db);
     ui.run();
-
-    return 0;
 }

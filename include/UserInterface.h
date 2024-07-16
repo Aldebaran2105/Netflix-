@@ -8,13 +8,13 @@ using namespace std;
 class UserInterface {
 public:
     UserInterface(MovieDatabase& db);
-
     void run();
+
+private:
     void showMainMenu();
     void showSearchResults(const vector<Movie>& results);
     void showMovieDetails(Movie& movie);
 
-private:
     MovieDatabase& database;
 };
 
